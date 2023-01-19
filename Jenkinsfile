@@ -1,16 +1,21 @@
 pipeline {
   agent any
-    tools {
-      maven 'maven3'
-                 jdk 'JDK8'
-    }
-    stages {      
+  stages {      
+        stage('Github checkout') {
+            steps {
+              echo 'Checking out github repo'
+              checkout scm
+              }
+            }
         stage('Build maven ') {
+            agent {
+              docker {image 'maven:3.8.7-sapmachine-11'}
+                  }
             steps { 
                     sh 'pwd'      
                     sh 'mvn  clean install package'
             }
-        }
+          }
         
         stage('Copy Artifact') {
            steps { 
@@ -22,7 +27,7 @@ pipeline {
         stage('Build docker image') {
            steps {
                script {         
-                 def customImage = docker.build('initsixcloud/petclinic', "./docker")
+                 def customImage = docker.build('richgold/petclinic', "./docker")
                  docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
                  customImage.push("${env.BUILD_NUMBER}")
                  }                     
