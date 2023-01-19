@@ -1,5 +1,9 @@
 pipeline {
   agent any
+  tools {
+    jdk 'JDK8'
+    maven 'maven3'
+    }
   stages {      
         stage('Github checkout') {
             steps {
@@ -8,11 +12,6 @@ pipeline {
               }
             }
         stage('Build maven') {
-            agent {
-              docker {
-                   image 'maven:3.8.7-sapmachine-11'
-                    }
-               }
             steps { 
                     sh 'pwd'      
                     sh 'mvn  clean install package'
