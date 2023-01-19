@@ -7,10 +7,12 @@ pipeline {
               checkout scm
               }
             }
-        stage('Build maven ') {
+        stage('Build maven') {
             agent {
-              docker {image 'maven:3.8.7-sapmachine-11'}
-                  }
+              docker {
+                   image 'maven:3.8.7-sapmachine-11'
+                    }
+               }
             steps { 
                     sh 'pwd'      
                     sh 'mvn  clean install package'
