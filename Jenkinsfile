@@ -5,12 +5,6 @@ pipeline {
     maven 'maven3'
     }
   stages {      
-        stage('Github checkout') {
-            steps {
-              echo 'Checking out github repo'
-              checkout scm
-              }
-            }
         stage('Build maven') {
             steps { 
                     sh 'pwd'      
