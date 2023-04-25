@@ -2,13 +2,12 @@
 name: Java CI with Maven
 
 on:
-  push:
-    workflow_dispatch:
-     inputs:
+  workflow_dispatch:
+    inputs:
       version:
-        description: Dev build version 
-        default: v1.0
-        required: true
+      description: Dev build version 
+      default: v1.0
+      required: true
 
 jobs:
   build:
