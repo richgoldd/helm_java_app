@@ -2,12 +2,9 @@
 name: Java CI with Maven
 
 on:
-  workflow_dispatch:
-    inputs:
-      version:
-      description: Dev build version 
-      default: v1.1
-      required: true
+  push: 
+      branches: [ "master" ]
+
 
 jobs:
   build:
@@ -49,7 +46,7 @@ jobs:
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: argocdtest
-        IMAGE_TAG: ${{ github.event.inputs.version }}
+        IMAGE_TAG: ver1.0
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
