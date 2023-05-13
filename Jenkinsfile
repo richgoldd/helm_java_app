@@ -5,8 +5,6 @@ pipeline {
           }
         }
 
-       IMAGE_NAME = "product_service"
-    
     stages {      
         stage('Git Checkout') {
             steps { 
