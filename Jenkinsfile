@@ -1,9 +1,5 @@
 pipeline {
-  agent {
-    docker {
-       image 'maven:3.9.1-amazoncorretto-8'
-          }
-        }
+    agent {docker {image 'maven:3.3.3'}
 
     stages {      
         stage('Git Checkout') {
@@ -50,9 +46,9 @@ pipeline {
            }       
         }
 
-  post {
-     failure {
-       mail to: 'richgoldd2@gmail.com',
+    post {
+      failure {
+        mail to: 'richgoldd2@gmail.com',
             subject: 'Failed pipeline: ${currentBuild.fullDisplayName}',
             body: 'Pipeline failed for dev ${env.BUILD_URL}'
     }
