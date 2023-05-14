@@ -30,6 +30,7 @@ pipeline {
         }
 
         stage('Docker Image Build') {
+            agent {docker {image 'alpine:latest'}}
             steps {
                 sh "docker build -t product_service:{env.BUILD_NUMBER} ."
             }
