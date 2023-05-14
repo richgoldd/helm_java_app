@@ -1,5 +1,9 @@
 pipeline {
-    agent {docker {image 'maven:3.3.3'}}
+    agent any
+    tools {
+      maven 'MAVEN3'
+      jdk 'JDK8'
+     }
 
     stages {      
         stage('Git Checkout') {
