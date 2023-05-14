@@ -51,6 +51,7 @@ pipeline {
         mail to: 'richgoldd2@gmail.com',
             subject: 'Failed pipeline: ${currentBuild.fullDisplayName}',
             body: 'Pipeline failed for dev ${env.BUILD_URL}'
-    }
-   }
-}
+         }
+       }
+     }
+  }
