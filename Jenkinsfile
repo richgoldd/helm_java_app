@@ -56,4 +56,5 @@ pipeline {
             subject: "Failed pipeline: ${currentBuild.fullDisplayName}"
             body: "Pipeline failed for dev ${env.BUILD_URL}"
     }
-       }
+   }
+}
