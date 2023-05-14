@@ -1,5 +1,5 @@
 pipeline {
-    agent {docker {image 'maven:3.3.3'}}
+    agent {docker {image 'maven:3.9.1-amazoncorretto-8'}}
 
     stages {      
         stage('Git Checkout') {
