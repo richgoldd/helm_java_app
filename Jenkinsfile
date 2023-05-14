@@ -29,7 +29,7 @@ pipeline {
         stage('Packaging Stage') {
            steps {
                    echo 'Packaging stage for the app...'
-                   sh 'mvn packagee'
+                   sh 'mvn package'
            }
         }
 
