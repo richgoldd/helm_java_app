@@ -1,10 +1,7 @@
 pipeline {
-    agent any
-    tools {
-      maven 'MAVEN3'
-      jdk 'JDK8'
-     }
 
+    agent any
+   
     stages {      
         stage('Git Checkout') {
             steps { 
@@ -13,6 +10,7 @@ pipeline {
                }      
               
         stage('Build Stage') {
+           agent { docker 'maven:3.5-alpine' }
            steps { 
                    echo 'Building stage for the app...'
                    sh 'mvn compile'
@@ -20,13 +18,17 @@ pipeline {
         }
 
         stage('Test App') {
+           agent { docker 'maven:3.5-alpine' }
            steps {
                    echo 'Testing stage for the app...'
                    sh 'mvn test'
+                   junit '**/target/surefire-reports/TEST-*.xml'
+
            }
         }
 
         stage('Packaging Stage') {
+           agent { docker 'maven:3.5-alpine' }
            steps {
                    echo 'Packaging stage for the app...'
                    sh 'mvn package'
